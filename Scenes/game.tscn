@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfgd4hos0cmp5"]
+[gd_scene load_steps=13 format=3 uid="uid://bfgd4hos0cmp5"]
 
 [ext_resource type="PackedScene" uid="uid://cdr654crm5jbq" path="res://Scenes/player.tscn" id="1_qww2h"]
 [ext_resource type="Texture2D" uid="uid://crbx5rnnd1kpv" path="res://assets/sprites/world_tileset.png" id="2_pgeqe"]
 [ext_resource type="PackedScene" uid="uid://bckrarkicew14" path="res://Scenes/grass_long_platform.tscn" id="3_ftfpk"]
 [ext_resource type="PackedScene" uid="uid://dkehf010fwlhj" path="res://Scenes/coin.tscn" id="4_fn1f0"]
 [ext_resource type="PackedScene" uid="uid://c4ar620257n0" path="res://Scenes/killzone.tscn" id="5_hx3sk"]
+[ext_resource type="PackedScene" uid="uid://c6nd7o74ds1l7" path="res://Scenes/greenslime.tscn" id="6_4m3xj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idrwj"]
 texture = ExtResource("2_pgeqe")
@@ -511,3 +512,6 @@ playback_process_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_mop67")
 }
+
+[node name="greenslime" parent="." instance=ExtResource("6_4m3xj")]
+position = Vector2(264, 68)
