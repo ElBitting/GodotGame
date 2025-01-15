@@ -1,7 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://cdr654crm5jbq"]
+[gd_scene load_steps=32 format=3 uid="uid://cdr654crm5jbq"]
 
 [ext_resource type="Texture2D" uid="uid://dfsuku5dmsfvc" path="res://assets/sprites/knight.png" id="1_5smir"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_fa1q2"]
+[ext_resource type="Script" path="res://Scripts/States/State Machine.gd" id="3_onl4u"]
+[ext_resource type="Script" path="res://Scripts/States/Idle.gd" id="4_dai3d"]
+[ext_resource type="Script" path="res://Scripts/States/Running.gd" id="5_836sd"]
+[ext_resource type="Script" path="res://Scripts/States/Jumping.gd" id="6_kaurd"]
+[ext_resource type="Script" path="res://Scripts/States/Falling.gd" id="7_cjgjl"]
+[ext_resource type="Script" path="res://Scripts/States/Dying.gd" id="8_1w2hu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhq0e"]
 atlas = ExtResource("1_5smir")
@@ -186,4 +192,29 @@ autoplay = "idle"
 position = Vector2(2, -7)
 shape = SubResource("CircleShape2D_f75or")
 
-[node name="State Machine" type="Node" parent="."]
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("init_state")]
+script = ExtResource("3_onl4u")
+init_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("4_dai3d")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Running" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("5_836sd")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Jumping" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("6_kaurd")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Falling" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "sprite")]
+script = ExtResource("7_cjgjl")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
+
+[node name="Dying" type="Node" parent="State Machine"]
+script = ExtResource("8_1w2hu")
