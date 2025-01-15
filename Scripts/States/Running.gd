@@ -1,9 +1,6 @@
 extends PlayerState
 class_name PlayerRunning
 
-@export var player: CharacterBody2D
-@export var sprite: AnimatedSprite2D
-@export var movespeed := 150.0
 
 func Enter():
 	sprite.play('run')

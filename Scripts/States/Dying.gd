@@ -1,11 +1,9 @@
 extends PlayerState
 class_name PlayerDying
 
-@export var player: CharacterBody2D
-@export var movespeed := 10.0
 
 func Enter():
-	pass
+	player.velocity.x = 0
 	
 func Exit():
 	pass

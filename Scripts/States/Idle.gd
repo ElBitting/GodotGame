@@ -1,10 +1,6 @@
 extends PlayerState
 class_name PlayerIdle
 
-@export var player: CharacterBody2D
-@export var sprite: AnimatedSprite2D
-@export var movespeed := 10.0
-
 func Enter():
 	sprite.play('idle')
 	

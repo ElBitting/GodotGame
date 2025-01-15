@@ -1,11 +1,6 @@
 extends PlayerState
 class_name PlayerJumping
 
-@export var player: CharacterBody2D
-@export var sprite: AnimatedSprite2D
-@export var JUMP_VELOCITY := 300.0
-@export var movespeed := 150
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func Enter():

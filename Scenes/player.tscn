@@ -216,5 +216,7 @@ script = ExtResource("7_cjgjl")
 player = NodePath("../..")
 sprite = NodePath("../../AnimatedSprite2D")
 
-[node name="Dying" type="Node" parent="State Machine"]
+[node name="Dying" type="Node" parent="State Machine" node_paths=PackedStringArray("player", "sprite")]
 script = ExtResource("8_1w2hu")
+player = NodePath("../..")
+sprite = NodePath("../../AnimatedSprite2D")
