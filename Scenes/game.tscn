@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfgd4hos0cmp5"]
+[gd_scene load_steps=15 format=3 uid="uid://bfgd4hos0cmp5"]
 
+[ext_resource type="Script" path="res://Scripts/gamemanager.gd" id="1_qr5gn"]
 [ext_resource type="PackedScene" uid="uid://cdr654crm5jbq" path="res://Scenes/player.tscn" id="1_qww2h"]
 [ext_resource type="Texture2D" uid="uid://crbx5rnnd1kpv" path="res://assets/sprites/world_tileset.png" id="2_pgeqe"]
+[ext_resource type="FontFile" uid="uid://b3nyevnbmqptl" path="res://assets/fonts/PixelOperator8.ttf" id="2_xglr3"]
 [ext_resource type="PackedScene" uid="uid://bckrarkicew14" path="res://Scenes/grass_long_platform.tscn" id="3_ftfpk"]
 [ext_resource type="PackedScene" uid="uid://dkehf010fwlhj" path="res://Scenes/coin.tscn" id="4_fn1f0"]
 [ext_resource type="PackedScene" uid="uid://c4ar620257n0" path="res://Scenes/killzone.tscn" id="5_hx3sk"]
@@ -451,6 +453,17 @@ _data = {
 }
 
 [node name="Game" type="Node2D"]
+
+[node name="Game Manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_qr5gn")
+
+[node name="Score" type="Label" parent="Game Manager"]
+offset_right = 40.0
+offset_bottom = 23.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_xglr3")
+text = "0"
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_hrimx")
