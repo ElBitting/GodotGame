@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bfgd4hos0cmp5"]
+[gd_scene load_steps=12 format=3 uid="uid://bfgd4hos0cmp5"]
 
 [ext_resource type="PackedScene" uid="uid://cdr654crm5jbq" path="res://Scenes/player.tscn" id="1_qww2h"]
 [ext_resource type="Texture2D" uid="uid://crbx5rnnd1kpv" path="res://assets/sprites/world_tileset.png" id="2_pgeqe"]
 [ext_resource type="PackedScene" uid="uid://bckrarkicew14" path="res://Scenes/grass_long_platform.tscn" id="3_ftfpk"]
+[ext_resource type="PackedScene" uid="uid://dkehf010fwlhj" path="res://Scenes/coin.tscn" id="4_fn1f0"]
+[ext_resource type="PackedScene" uid="uid://c4ar620257n0" path="res://Scenes/killzone.tscn" id="5_hx3sk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_idrwj"]
 texture = ExtResource("2_pgeqe")
@@ -406,24 +408,21 @@ texture = ExtResource("2_pgeqe")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_idrwj")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yodw2"]
-distance = -65.0
-
 [sub_resource type="Animation" id="Animation_0keua"]
 resource_name = "move"
-length = 1.5
+length = 2.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0.1, 1.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(290, 79), Vector2(419, 79)]
+"values": [Vector2(290, 79), Vector2(420, 79)]
 }
 
 [sub_resource type="Animation" id="Animation_knxvl"]
@@ -447,6 +446,9 @@ _data = {
 "move": SubResource("Animation_0keua")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7jh35"]
+distance = -167.0
+
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -461,14 +463,10 @@ position = Vector2(56, 64)
 position = Vector2(2, -7)
 zoom = Vector2(4, 4)
 process_callback = 0
+limit_bottom = 175
+limit_smoothed = true
 position_smoothing_enabled = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(76, 51)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-3, 29)
-shape = SubResource("WorldBoundaryShape2D_yodw2")
+position_smoothing_speed = 10.0
 
 [node name="GrassLongPlatform" parent="." instance=ExtResource("3_ftfpk")]
 position = Vector2(50, 23)
@@ -478,6 +476,26 @@ position = Vector2(290, 79)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GrassLongPlatform2"]
 autoplay = "move"
+playback_process_mode = 0
 libraries = {
 "": SubResource("AnimationLibrary_mop67")
 }
+
+[node name="Coin" parent="." instance=ExtResource("4_fn1f0")]
+position = Vector2(106, 41)
+
+[node name="Coin2" parent="." instance=ExtResource("4_fn1f0")]
+position = Vector2(56, 18)
+
+[node name="Coin3" parent="." instance=ExtResource("4_fn1f0")]
+position = Vector2(447, 73)
+
+[node name="Coin4" parent="." instance=ExtResource("4_fn1f0")]
+position = Vector2(360, 48)
+
+[node name="Killzone" parent="." instance=ExtResource("5_hx3sk")]
+position = Vector2(58, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(-58, -57)
+shape = SubResource("WorldBoundaryShape2D_7jh35")
