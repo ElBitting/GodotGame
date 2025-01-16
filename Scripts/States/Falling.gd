@@ -21,7 +21,7 @@ func Update(_delta: float):
 	
 
 func Physics_Update(_delta: float):
-	player.velocity.y += player.gravity * _delta
+	player.velocity.y += player.gravity * _delta * player.gravitymult
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	var jump = Input.is_action_pressed("jump")

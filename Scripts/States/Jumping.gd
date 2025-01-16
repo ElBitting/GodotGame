@@ -16,9 +16,9 @@ func Update(_delta: float):
 
 func Physics_Update(_delta: float):
 	if Input.is_action_just_released("jump") and player.velocity.y < 0:
-		player.velocity.y = player.velocity.y * .5
+		player.velocity.y = player.velocity.y * player.shortjump
 	if player.velocity.y > 0:
-		player.velocity.y += player.gravity * 1.5 * _delta
+		player.velocity.y += player.gravity * player.gravitymult * _delta
 	else:
 		player.velocity.y += player.gravity * _delta
 	
