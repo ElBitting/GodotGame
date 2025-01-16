@@ -15,7 +15,12 @@ func Update(_delta: float):
 	jumptimer -= _delta
 
 func Physics_Update(_delta: float):
-	player.velocity.y += player.gravity * _delta
+	if Input.is_action_just_released("jump") and player.velocity.y < 0:
+		player.velocity.y = player.velocity.y * .5
+	if player.velocity.y > 0:
+		player.velocity.y += player.gravity * 1.5 * _delta
+	else:
+		player.velocity.y += player.gravity * _delta
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction > 0:
@@ -26,6 +31,7 @@ func Physics_Update(_delta: float):
 	var jump = Input.is_action_pressed("jump")
 	if jump:
 		jumptimer = jumpbuffer
+		
 		
 	if direction:
 		player.velocity.x = direction * player.movespeed
