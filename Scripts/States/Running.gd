@@ -19,9 +19,9 @@ func Physics_Update(_delta: float):
 		sprite.flip_h = true
 		
 	if direction:
-		player.velocity.x = direction * movespeed
+		player.velocity.x = direction * player.movespeed
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, movespeed)
+		player.velocity.x = move_toward(player.velocity.x, 0, player.movespeed)
 	if not direction and player.is_on_floor():
 		Transitioned.emit(self, 'idle')
 	if Input.is_action_just_pressed("jump"):

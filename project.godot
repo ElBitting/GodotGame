@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Godot Game"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="res://Scenes/GameFunction/game.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Music="*res://Scenes/music.tscn"
+Music="*res://Scenes/GameFunction/music.tscn"
 
 [input]
 

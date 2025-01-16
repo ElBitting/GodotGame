@@ -1,7 +1,6 @@
 extends PlayerState
 class_name PlayerFalling
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func Enter():
 	sprite.play('jump')
@@ -13,7 +12,7 @@ func Update(_delta: float):
 	pass
 
 func Physics_Update(_delta: float):
-	player.velocity.y += gravity * _delta
+	player.velocity.y += player.gravity * _delta
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction > 0:
@@ -22,9 +21,9 @@ func Physics_Update(_delta: float):
 		sprite.flip_h = true
 		
 	if direction:
-		player.velocity.x = direction * movespeed
+		player.velocity.x = direction * player.movespeed
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, movespeed)
+		player.velocity.x = move_toward(player.velocity.x, 0, player.movespeed)
 		
 	if player.is_on_floor() and direction:
 		Transitioned.emit(self, 'running')
