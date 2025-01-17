@@ -1,7 +1,7 @@
 extends PlayerState
 class_name PlayerJumping
 
-@export var jumpbuffer := .2
+@export var jumpbuffer := .1
 var jumptimer: float = 0
 var reenter: bool = false
 
