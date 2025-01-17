@@ -1,7 +1,7 @@
 extends PlayerState
 class_name PlayerFalling
 
-@export var jumpbuffer := 0.1
+@export var jumpbuffer := 0.2
 @export var coyotetime := 0.1
 
 var coyotetimer: float = 0 
@@ -24,7 +24,7 @@ func Physics_Update(_delta: float):
 	player.velocity.y += player.gravity * _delta * player.gravitymult
 	
 	var direction = Input.get_axis("move_left", "move_right")
-	var jump = Input.is_action_pressed("jump")
+	var jump = Input.is_action_just_pressed("jump")
 	if jump:
 		jumptimer = jumpbuffer
 	if jump and coyotetimer > 0:
