@@ -21,6 +21,9 @@ func Physics_Update(_delta: float):
 	else:
 		player.velocity.x = player.rollspeed
 		
+	if not player.is_on_floor():
+		player.velocity.y  += player.gravity * _delta*.3
+		
 	var direction = Input.get_axis("move_left", "move_right")
 		
 	if RollTimer.is_stopped():
@@ -28,10 +31,10 @@ func Physics_Update(_delta: float):
 			player.velocity.x = player.movespeed * direction
 			Transitioned.emit(self, 'running')
 		elif player.is_on_floor and Input.is_action_just_pressed("jump"):
-			player.velocity.x = 0
+			player.velocity.x = player.velocity.x/2
 			Transitioned.emit(self, 'jumping')
 		elif not player.is_on_floor():
-			player.velocity.x = 0
+			player.velocity.x = player.velocity.x/2
 			Transitioned.emit(self, 'falling')
 		else:
 			player.velocity.x = 0
