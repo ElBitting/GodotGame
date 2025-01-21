@@ -11,10 +11,11 @@ func Exit():
 func Update(_delta: float):
 	if player.is_on_floor and Input.get_axis("move_left", "move_right"):
 		Transitioned.emit(self, 'running')
-		
-	if player.is_on_floor and Input.is_action_just_pressed("jump"):
+	elif player.is_on_floor and Input.is_action_just_pressed("dash"):
+		Transitioned.emit(self, 'rolling')
+	elif player.is_on_floor and Input.is_action_just_pressed("jump"):
 		Transitioned.emit(self, 'jumping')
-	if not player.is_on_floor():
+	elif not player.is_on_floor():
 		Transitioned.emit(self, 'falling')
 		
 

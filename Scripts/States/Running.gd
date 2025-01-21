@@ -24,7 +24,9 @@ func Physics_Update(_delta: float):
 		player.velocity.x = move_toward(player.velocity.x, 0, player.movespeed)
 	if not direction and player.is_on_floor():
 		Transitioned.emit(self, 'idle')
-	if Input.is_action_just_pressed("jump"):
+	elif player.is_on_floor and Input.is_action_just_pressed("dash"):
+		Transitioned.emit(self, 'rolling')
+	elif Input.is_action_just_pressed("jump"):
 		Transitioned.emit(self, 'jumping')
-	if not player.is_on_floor():
+	elif not player.is_on_floor():
 		Transitioned.emit(self, 'falling')

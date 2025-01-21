@@ -1,8 +1,9 @@
 extends PlayerState
 class_name PlayerJumping
 
-@export var jumpbuffer := .1
+@export var jumpbuffer := .15
 var jumptimer: float = 0
+var dashtimer: float = 0
 var reenter: bool = false
 
 func Enter():
@@ -14,9 +15,13 @@ func Exit():
 	
 func Update(_delta: float):
 	var jump = Input.is_action_just_pressed("jump")
+	var roll = Input.is_action_just_pressed('dash')
 	if jumptimer <= 0 and jump:
 		jumptimer = jumpbuffer
+	if dashtimer <= 0 and roll:
+		dashtimer = jumpbuffer
 	jumptimer -= _delta
+	dashtimer -= _delta
 	
 
 func Physics_Update(_delta: float):
@@ -49,6 +54,8 @@ func Physics_Update(_delta: float):
 	if player.is_on_floor() and jumptimer > 0:
 		reenter = true
 		Transitioned.emit(self,'jumping')
+	elif player.is_on_floor() and dashtimer > 0:
+		Transitioned.emit(self,'rolling')
 	elif player.is_on_floor() and direction:
 		Transitioned.emit(self, 'running')
 	elif player.is_on_floor():
